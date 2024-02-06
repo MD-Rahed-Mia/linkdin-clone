@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.loader {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+:root {
+  --primary-color: #0a66c2;
+}
+
+.topbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.topbar-item {
+  @apply flex items-center justify-center flex-col text-stone-500 font-bold cursor-pointer;
+}
+.topbar-item:hover {
+  @apply text-slate-800;
+}
+
+.tobar-auth-Items {
+  @apply p-2 flex items-center justify-center flex-col px-5 py-2 hover:bg-slate-300 cursor-pointer rounded-lg
+}
