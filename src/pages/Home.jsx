@@ -7,15 +7,12 @@ import Homes from "../components/Home";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const navigator = useNavigate();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (res) => {
-      if (res?.accessToken != null) {
-        setLoading(false);
-      } else {
-      }
-    });
+    const localUser = localStorage.getItem("userEmail");
+    if (localUser) {
+      setLoading(false);
+    }
   });
   return <div>{loading ? <Loader /> : <Homes />}</div>;
 }

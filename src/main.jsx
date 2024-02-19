@@ -4,11 +4,12 @@ import App from "./App.jsx";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/router.jsx";
-import {app} from "./configAuth.js"
+import { UserContextProvider } from "./context/Context.jsx";
 import { ToastContainer } from "react-toastify";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    <UserContextProvider>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </UserContextProvider>
 );

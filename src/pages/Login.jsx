@@ -26,9 +26,7 @@ export default function Login() {
     onAuthStateChanged(auth, (res) => {
       if (res?.accessToken != null) {
         navigator("/");
-      }
-      else{
-        
+      } else {
       }
     });
   }, []);
@@ -52,6 +50,7 @@ export default function Login() {
               setCredential({ ...credential, email: event.target.value })
             }
             required
+            autoComplete="true"
           />
         </div>
         <div>
@@ -67,6 +66,7 @@ export default function Login() {
               setCredential({ ...credential, password: event.target.value })
             }
             required
+            autoComplete="true"
           />
         </div>
         <div>

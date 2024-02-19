@@ -41,5 +41,9 @@ body {
 }
 
 .tobar-auth-Items {
-  @apply p-2 flex items-center justify-center flex-col px-5 py-2 hover:bg-slate-300 cursor-pointer rounded-lg
+  @apply p-2 flex items-center justify-center flex-col px-5 py-2 hover:bg-slate-300 cursor-pointer rounded-lg;
+}
+
+.edit-info-items {
+  
 }

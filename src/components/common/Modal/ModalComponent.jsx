@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { createPost } from "../../../API/Firestore";
 
-export default function ModalComponent({
-  isModalOn,
-  setIsModalOn,
-  handlePostStatus,
-}) {
+export default function ModalComponent({ isModalOn, setIsModalOn }) {
   //status
   const [status, setStatus] = useState("");
 
@@ -25,10 +23,11 @@ export default function ModalComponent({
   //handle send post
   async function handleSendPost() {
     try {
-      await handlePostStatus(status);
+      await createPost(status);
       await setIsModalOn(!isModalOn);
     } catch (error) {
       console.log("failed to save post.");
+      console.log(error.message);
     }
   }
 
@@ -36,11 +35,11 @@ export default function ModalComponent({
   if (isModalOn) {
     return (
       <div
-        className="w-full absolute left-0 top-0 min-h-screen bg-slate-900 bg-opacity-30"
+        className="w-full absolute left-0 top-0 h-screen bg-slate-900 bg-opacity-30 "
         onClick={() => handleBackground()}
       >
         <div
-          className="post-block mt-52 w-2/4 mx-auto p-4 bg-white border shadow rounded-2xl "
+          className="post-block mt-52 w-2/4 mx-auto p-4 bg-white border shadow rounded-2xl relative z-50"
           onClick={(event) => handleCardPropagation(event)}
         >
           <h1 className="text-2xl text-slate-800 font-bold">Create a post</h1>
@@ -68,6 +67,7 @@ export default function ModalComponent({
             Cancel
           </button>
         </div>
+        <ToastContainer />
       </div>
     );
   } else {

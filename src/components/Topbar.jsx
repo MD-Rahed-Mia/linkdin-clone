@@ -34,11 +34,14 @@ export default function Topbar() {
           <IoBagHandleSharp />
           <p>Jobs</p>
         </div>
-        <div className="topbar-item px-5 py-2 hover:bg-slate-200 rounded-full">
+        <a
+          href="/register"
+          className="topbar-item px-5 py-2 hover:bg-slate-200 rounded-full"
+        >
           <p>Join Now</p>
-        </div>
+        </a>
         <div className="border-2 px-5 py-2 text-lg text-[color:var(--primary-color)] cursor-pointer hover:bg-slate-200 rounded-full border-[color:var(--primary-color)]">
-          sign in
+          <a href="/login">sign in</a>
         </div>
       </div>
     </div>

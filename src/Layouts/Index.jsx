@@ -1,13 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
-import Home from "../pages/Home";
+import React, { useEffect, useState } from "react";
+import TopbarAuth from "../components/TopbarAuth";
 import Topbar from "../components/Topbar";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../configAuth";
-import TopbarAuth from "../components/TopbarAuth";
-import { ToastContainer } from "react-toastify";
 
-export default function Homelayouts() {
+export default function Layout({ children }) {
   const [isAuthorize, setIsAuthorize] = useState(false);
+  const [user, setUser] = useState({});
 
   //getting auth for check userStates
   useEffect(() => {
@@ -19,9 +18,9 @@ export default function Homelayouts() {
   }, []);
 
   return (
-    <div className="w-3/5 mx-auto ">
-      {isAuthorize ? <TopbarAuth /> : <Topbar />}
-      <Home />
+    <div className="w-3/5 mx-auto">
+      {isAuthorize ? <TopbarAuth user={user} /> : <Topbar />}
+      {children}
     </div>
   );
 }

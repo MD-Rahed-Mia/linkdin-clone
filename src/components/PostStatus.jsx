@@ -7,20 +7,30 @@ import ModalComponent from "./common/Modal/ModalComponent";
 import { createPost } from "../API/Firestore";
 import { getAllPost } from "../API/Firestore";
 import PostCard from "./common/PostCard";
+import { ToastContainer, toast } from "react-toastify";
+import uuid from "react-uuid";
+
+import Loader from "./common/Loader";
 
 export default function PostStatus() {
+  const [loading, setLoading] = useState(true);
   const [allPost, setAllPost] = useState([]);
 
   const [isModalOn, setIsModalOn] = useState(false);
 
   //handlepost status event here
-  const handlePostStatus = (event) => {
-    createPost(event);
+  const handlePostStatus = async (event) => {
+    try {
+      const res = await createPost(event);
+      toast.success("post successful.");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //use memo to get all the post here
   useMemo(() => {
-    getAllPost(setAllPost);
+    getAllPost(setAllPost, setLoading);
   }, []);
 
   return (
@@ -60,10 +70,15 @@ export default function PostStatus() {
           ""
         )}
       </div>
-      <div className="w-2/3 mx-auto mt-5">
-        {allPost.map((post) => {
-          return <PostCard post={post.status} postId={post.id} />;
-        })}
+      <div className="w-2/3 mx-auto mt-5 z-10">
+        {allPost.length == 0 ? (
+          <Loader isLoading={loading} />
+        ) : (
+          allPost.map((post) => {
+            return <PostCard key={uuid()} post={post} userOwn={false} />;
+          })
+        )}
+        <ToastContainer />
       </div>
     </>
   );
